@@ -145,14 +145,24 @@ function peg$parse(input, options) {
         "|",
         peg$literalExpectation("|", false),
         function(first, rest) {
-            return rest.length === 0
-             ? first
-             : { type: 'alternative', paths: [first, ...(rest.map(r => r[1]))] }
+            if (rest.length === 0) return first
+            let paths = [first, ...(rest.map(r => r[1]))]
+            paths = paths.reduce((c,x) => {
+            	return x.type && x.type === 'alternative' 
+                	? [...c, ...x.paths]
+                    : [...c, x]
+            }, [])
+            return { type: 'alternative', paths }
           },
         function(first, rest) {
-            return rest.length === 0
-             ? first
-             : { type: 'sequence', paths: [first, ...rest] }
+            if (rest.length === 0) return first
+            let paths = [first, ...rest]
+            paths = paths.reduce((c,x) => {
+            	return x.type && x.type === 'sequence' 
+                	? [...c, ...x.paths]
+                    : [...c, x]
+            }, [])
+            return { type: 'sequence', paths }
           },
         "/",
         peg$literalExpectation("/", false),
@@ -161,12 +171,7 @@ function peg$parse(input, options) {
         peg$literalExpectation("^", false),
         function(path) { return {type: 'inverse', path: path.path} },
         function(path) { return {type: 'inverse', path} },
-        function(path, modifier) {
-
-          	return modifier 
-            	? { path, modifier} 
-                : path
-          },
+        function(path, modifier) { return modifier ? { path, modifier} : path },
         "*",
         peg$literalExpectation("*", false),
         function() { return {min:0, max:Infinity} },

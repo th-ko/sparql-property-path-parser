@@ -1,5 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`property path parser can inline sequences that are backeted 1`] = `
+Object {
+  "paths": Array [
+    Object {
+      "path": "propOne",
+    },
+    Object {
+      "paths": Array [
+        Object {
+          "path": "propTwo",
+        },
+        Object {
+          "path": "propThree",
+        },
+      ],
+      "type": "sequence",
+    },
+    Object {
+      "paths": Array [
+        Object {
+          "path": "propFour",
+        },
+        Object {
+          "path": "propFive",
+        },
+      ],
+      "type": "sequence",
+    },
+  ],
+  "type": "sequence",
+}
+`;
+
 exports[`property path parser can parse complex paths 1`] = `
 Object {
   "paths": Array [
@@ -10,18 +43,14 @@ Object {
             "max": Infinity,
             "min": 1,
           },
-          "path": Object {
-            "path": "altOnePropOne",
-          },
+          "path": "altOnePropOne",
         },
         Object {
           "modifier": Object {
             "max": Infinity,
             "min": 1,
           },
-          "path": Object {
-            "path": "altOnePropTwo",
-          },
+          "path": "altOnePropTwo",
         },
       ],
       "type": "sequence",
@@ -33,18 +62,14 @@ Object {
             "max": Infinity,
             "min": 0,
           },
-          "path": Object {
-            "path": "altTwoPropOne",
-          },
+          "path": "altTwoPropOne",
         },
         Object {
           "modifier": Object {
             "max": 3,
             "min": 3,
           },
-          "path": Object {
-            "path": "propThree",
-          },
+          "path": "propThree",
         },
       ],
       "type": "sequence",
@@ -58,15 +83,15 @@ exports[`property path parser can parse path with spaces 1`] = `
 Object {
   "paths": Array [
     Object {
-      "path": "altOnePropOne",
+      "path": "propOne",
     },
     Object {
       "paths": Array [
         Object {
-          "path": "altOnePropTwo",
+          "path": "altPropOne",
         },
         Object {
-          "path": "altTwoPropOne",
+          "path": "altPropTwo",
         },
       ],
       "type": "alternative",
@@ -96,7 +121,7 @@ Object {
     },
     Object {
       "path": "propThree",
-    },
+    }
   ],
   "type": "sequence",
 }
