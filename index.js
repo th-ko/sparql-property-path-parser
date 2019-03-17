@@ -149,8 +149,8 @@ function peg$parse(input, options) {
             let paths = [first, ...(rest.map(r => r[1]))]
             paths = paths.reduce((c,x) => {
             	return x.type && x.type === 'alternative' 
-                	? [...c, ...x.paths]
-                    : [...c, x]
+                ? [...c, ...x.paths]
+                : [...c, x]
             }, [])
             return { type: 'alternative', paths }
           },
@@ -159,8 +159,8 @@ function peg$parse(input, options) {
             let paths = [first, ...rest]
             paths = paths.reduce((c,x) => {
             	return x.type && x.type === 'sequence' 
-                	? [...c, ...x.paths]
-                    : [...c, x]
+                ? [...c, ...x.paths]
+                : [...c, x]
             }, [])
             return { type: 'sequence', paths }
           },
@@ -169,15 +169,14 @@ function peg$parse(input, options) {
         function(path) { return path },
         "^",
         peg$literalExpectation("^", false),
-        function(path) { return {type: 'inverse', path: path.path} },
-        function(path) { return {type: 'inverse', path} },
-        function(path, modifier) { return modifier ? { path, modifier} : path },
+        function(path) { return { type: 'inverse', path } },
+        function(path, modifier) { return modifier ? { ...path, modifier} : path },
         "*",
         peg$literalExpectation("*", false),
         function() { return {min:0, max:Infinity} },
         "?",
         peg$literalExpectation("?", false),
-        function() { return {min:0, max:1}},
+        function() { return {min:0, max:1} },
         "+",
         peg$literalExpectation("+", false),
         function() { return {min:1, max:Infinity} },
@@ -196,8 +195,8 @@ function peg$parse(input, options) {
         ")",
         peg$literalExpectation(")", false),
         peg$otherExpectation("iriref"),
-        /^[a-zA-Z_:]/,
-        peg$classExpectation([["a", "z"], ["A", "Z"], "_", ":"], false, false),
+        /^[a-zA-Z0-9_:]/,
+        peg$classExpectation([["a", "z"], ["A", "Z"], ["0", "9"], "_", ":"], false, false),
         function(predicate) { return predicate.join('') },
         peg$otherExpectation("integer"),
         /^[0-9]/,
@@ -213,13 +212,13 @@ function peg$parse(input, options) {
         peg$decode("%;\"/k#$%2 \"\"6 7!/,#;\"/#$+\")(\"'#&'#0<*%2 \"\"6 7!/,#;\"/#$+\")(\"'#&'#&/)$8\":\"\"\"! )(\"'#&'#"),
         peg$decode("%;$/B#;*/9$$;#0#*;#&/)$8#:##\"\" )(#'#(\"'#&'#"),
         peg$decode("%2$\"\"6$7%/1#;$/($8\":&\"! )(\"'#&'#.A &%2'\"\"6'7(/1#;%/($8\":)\"! )(\"'#&'#"),
-        peg$decode("%2'\"\"6'7(/1#;%/($8\":*\"! )(\"'#&'#./ &%;%/' 8!:&!! )"),
-        peg$decode("%;'/7#;&.\" &\"/)$8\":+\"\"! )(\"'#&'#"),
-        peg$decode("%2,\"\"6,7-/& 8!:.! ).\u0142 &%2/\"\"6/70/& 8!:1! ).\u012B &%22\"\"6273/& 8!:4! ).\u0114 &%25\"\"6576/t#;)/k$;*/b$27\"\"6778/S$;*/J$;)/A$;*/8$29\"\"697:/)$8(:;(\"&\")(('#(''#(&'#(%'#($'#(#'#(\"'#&'#.\xAD &%25\"\"6576/a#;)/X$;*/O$27\"\"6778/@$;*/7$29\"\"697:/($8&:<&!$)(&'#(%'#($'#(#'#(\"'#&'#.Y &%25\"\"6576/I#;)/@$;*/7$29\"\"697:/($8$:=$!\")($'#(#'#(\"'#&'#"),
-        peg$decode("%;*/:#;(/1$;*/($8#:>#!!)(#'#(\"'#&'#.b &%;*/X#2?\"\"6?7@/I$;!/@$2A\"\"6A7B/1$;*/($8%:&%!\")(%'#($'#(#'#(\"'#&'#"),
-        peg$decode("<%$4D\"\"5!7E/,#0)*4D\"\"5!7E&&&#/' 8!:F!! )=.\" 7C"),
-        peg$decode("<%;*/I#$4H\"\"5!7I/,#0)*4H\"\"5!7I&&&#/'$8\":J\" )(\"'#&'#=.\" 7G"),
-        peg$decode("<$4L\"\"5!7M0)*4L\"\"5!7M&=.\" 7K")
+        peg$decode("%2'\"\"6'7(/1#;%/($8\":)\"! )(\"'#&'#./ &%;%/' 8!:&!! )"),
+        peg$decode("%;'/7#;&.\" &\"/)$8\":*\"\"! )(\"'#&'#"),
+        peg$decode("%2+\"\"6+7,/& 8!:-! ).\u0142 &%2.\"\"6.7//& 8!:0! ).\u012B &%21\"\"6172/& 8!:3! ).\u0114 &%24\"\"6475/t#;)/k$;*/b$26\"\"6677/S$;*/J$;)/A$;*/8$28\"\"6879/)$8(::(\"&\")(('#(''#(&'#(%'#($'#(#'#(\"'#&'#.\xAD &%24\"\"6475/a#;)/X$;*/O$26\"\"6677/@$;*/7$28\"\"6879/($8&:;&!$)(&'#(%'#($'#(#'#(\"'#&'#.Y &%24\"\"6475/I#;)/@$;*/7$28\"\"6879/($8$:<$!\")($'#(#'#(\"'#&'#"),
+        peg$decode("%;*/:#;(/1$;*/($8#:=#!!)(#'#(\"'#&'#.b &%;*/X#2>\"\"6>7?/I$;!/@$2@\"\"6@7A/1$;*/($8%:&%!\")(%'#($'#(#'#(\"'#&'#"),
+        peg$decode("<%$4C\"\"5!7D/,#0)*4C\"\"5!7D&&&#/' 8!:E!! )=.\" 7B"),
+        peg$decode("<%;*/I#$4G\"\"5!7H/,#0)*4G\"\"5!7H&&&#/'$8\":I\" )(\"'#&'#=.\" 7F"),
+        peg$decode("<$4K\"\"5!7L0)*4K\"\"5!7L&=.\" 7J")
       ],
 
       peg$currPos          = 0,

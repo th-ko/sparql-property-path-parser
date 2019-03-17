@@ -7,26 +7,16 @@ Object {
       "path": "propOne",
     },
     Object {
-      "paths": Array [
-        Object {
-          "path": "propTwo",
-        },
-        Object {
-          "path": "propThree",
-        },
-      ],
-      "type": "sequence",
+      "path": "propTwo",
     },
     Object {
-      "paths": Array [
-        Object {
-          "path": "propFour",
-        },
-        Object {
-          "path": "propFive",
-        },
-      ],
-      "type": "sequence",
+      "path": "propThree",
+    },
+    Object {
+      "path": "propFour",
+    },
+    Object {
+      "path": "propFive",
     },
   ],
   "type": "sequence",
@@ -101,9 +91,7 @@ Object {
         "max": Infinity,
         "min": 0,
       },
-      "path": Object {
-        "path": "propThree",
-      },
+      "path": "propThree",
     },
   ],
   "type": "sequence",
@@ -121,7 +109,7 @@ Object {
     },
     Object {
       "path": "propThree",
-    }
+    },
   ],
   "type": "sequence",
 }
