@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`property path parser can parse complex paths 1`] = `
+Object {
+  "paths": Array [
+    Object {
+      "paths": Array [
+        Object {
+          "modifier": Object {
+            "max": Infinity,
+            "min": 1,
+          },
+          "path": Object {
+            "path": "altOnePropOne",
+          },
+        },
+        Object {
+          "modifier": Object {
+            "max": Infinity,
+            "min": 1,
+          },
+          "path": Object {
+            "path": "altOnePropTwo",
+          },
+        },
+      ],
+      "type": "sequence",
+    },
+    Object {
+      "paths": Array [
+        Object {
+          "modifier": Object {
+            "max": Infinity,
+            "min": 0,
+          },
+          "path": Object {
+            "path": "altTwoPropOne",
+          },
+        },
+        Object {
+          "modifier": Object {
+            "max": 3,
+            "min": 3,
+          },
+          "path": Object {
+            "path": "propThree",
+          },
+        },
+      ],
+      "type": "sequence",
+    },
+  ],
+  "type": "alternative",
+}
+`;
+
+exports[`property path parser can parse path with spaces 1`] = `
+Object {
+  "paths": Array [
+    Object {
+      "path": "altOnePropOne",
+    },
+    Object {
+      "paths": Array [
+        Object {
+          "path": "altOnePropTwo",
+        },
+        Object {
+          "path": "altTwoPropOne",
+        },
+      ],
+      "type": "alternative",
+    },
+    Object {
+      "modifier": Object {
+        "max": Infinity,
+        "min": 0,
+      },
+      "path": Object {
+        "path": "propThree",
+      },
+    },
+  ],
+  "type": "sequence",
+}
+`;
+
+exports[`property path parser can parse simple sequences 1`] = `
+Object {
+  "paths": Array [
+    Object {
+      "path": "propOne",
+    },
+    Object {
+      "path": "propTwo",
+    },
+    Object {
+      "path": "propThree",
+    },
+  ],
+  "type": "sequence",
+}
+`;
